@@ -1,0 +1,16 @@
+<ion-view view-title="Runs">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="run in runs" type="item-text-wrap" href="#/tab/chats/{{run.id}}">
+        <img ng-src="{{run.face}}">
+        <h2>{{run.name}}</h2>
+        <p>{{run.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(run)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

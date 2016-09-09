@@ -1,0 +1,13 @@
+Terms:
+
+dash == home
+DashCtrl == HomeCrtl
+chats == runs
+ChatsCtrl == RunsCtrl
+chat-detail == run-play
+chatId == runId
+ChatDetailCtrl == RunPlayCtrl
+account == settings
+AccountCtrl == SettingsCtrl
+Chats == Runs
+chat == run
