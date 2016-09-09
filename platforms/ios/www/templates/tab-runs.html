@@ -1,16 +1,15 @@
-<ion-view view-title="Runs">
+<ion-view view-title="Silo City Runs">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="run in runs" type="item-text-wrap" href="#/tab/chats/{{run.id}}">
-        <img ng-src="{{run.face}}">
-        <h2>{{run.name}}</h2>
-        <p>{{run.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(run)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
+        <div class="list card" ng-repeat="run in runs" >
+          <div class="item">
+            <h2>{{run.title}}</h2>
+          </div>
+          <div class="item item-body">
+            <img class="full-image" src="{{run.image}}">
+            <p>{{run.description}}</p>
+            <p><small>2.4 Mi | <i class="icon ion-ios-pulse-strong"></i> Moderate</small></p>
+            <a href="#/tab/runs/{{run.id}}" class="button button-block button-positive">RUN!</a>
+          </div>
+        </div>
   </ion-content>
 </ion-view>

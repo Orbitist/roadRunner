@@ -14,8 +14,28 @@ angular.module('starter.controllers', [])
   $scope.runs = Runs.all();
 })
 
-.controller('RunPlayCtrl', function($scope, $stateParams, Runs) {
+.controller('RunPlayCtrl', function($scope, $stateParams, $cordovaGeolocation, $ionicPlatform, Runs) {
   $scope.run = Runs.get($stateParams.runId);
+
+  var map;
+  function showMap(coords) {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: coords.latitude, lng: coords.longitude},
+      zoom: 13
+    });
+  }
+
+  $ionicPlatform.ready(function() {
+    var posOptions = {timeout: 10000, enableHighAccuracy: true};
+    $cordovaGeolocation.getCurrentPosition(posOptions)
+      .then(function (position) {
+        $scope.coords = position.coords;
+        showMap(position.coords);
+      }, function(err) {
+        console.log('getCurrentPosition error: ' + angular.toJson(err));
+      });
+  });
+
 })
 
 .controller('SettingsCtrl', function($scope) {

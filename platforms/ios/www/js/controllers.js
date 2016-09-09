@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCrtl', function($scope) {})
+.controller('HomeCtrl', function($scope) {})
 
 .controller('RunsCtrl', function($scope, Runs) {
   // With the new view caching in Ionic, Controllers are only called
@@ -12,9 +12,6 @@ angular.module('starter.controllers', [])
   //});
 
   $scope.runs = Runs.all();
-  $scope.remove = function(run) {
-    Runs.remove(run);
-  };
 })
 
 .controller('RunPlayCtrl', function($scope, $stateParams, Runs) {
