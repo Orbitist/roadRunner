@@ -4,8 +4,12 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{run.name}}">
-  <ion-content scroll="false">
+<ion-view view-title="{{run.title}}">
+  <ion-content scroll="false" >
+    <!-- Spinner -->
+    <div id="spinner">
+      <div class="sk-spinner sk-spinner-pulse"></div>
+    </div>
     <div id="map"></div>
   </ion-content>
 </ion-view>
