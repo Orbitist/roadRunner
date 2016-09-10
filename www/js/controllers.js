@@ -49,7 +49,7 @@ angular.module('starter.controllers', [])
   function showMap(coords) {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: coords.latitude, lng: coords.longitude},
-      zoom: 19,
+      zoom: 18,
       disableDefaultUI: true,
       mapTypeId: 'hybrid'
     });
@@ -57,10 +57,10 @@ angular.module('starter.controllers', [])
       position: {lat: coords.latitude, lng: coords.longitude},
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: 5,
-        fillColor: 'yellow',
+        scale: 10,
+        fillColor: 'white',
         fillOpacity: 0.8,
-        strokeColor: 'gold',
+        strokeColor: '#387ef5',
         strokeWeight: 5
       },
       map: map
