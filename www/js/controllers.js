@@ -21,6 +21,10 @@ angular.module('starter.controllers', [])
     // Update map
     var newLatLng = new google.maps.LatLng(newCoords.latitude, newCoords.longitude);
     $scope.marker.setPosition(newLatLng);
+    map.setCenter({
+  		lat : newCoords.latitude,
+  		lng : newCoords.longitude
+    });
     // Check for actions
     // Wait 1 second then run getCoords again
     setTimeout(function (){
