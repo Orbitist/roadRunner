@@ -53,8 +53,8 @@ angular.module('starter.controllers', [])
   };
 
   function playAudio(src) {
-    var media = new Media(src, null, null, mediaStatusCallback);
-    $cordovaMedia.play(media);
+    $scope.media = $cordovaMedia.newMedia(src);
+    $scope.media.play({numberOfLoops: 1,playAudioWhenScreenIsLocked : true});
   };
 
   function runTimeline() {
@@ -62,7 +62,8 @@ angular.module('starter.controllers', [])
     for (var i = 0; i < run0.length; i++) {
       if ((distance($scope.position.coords.latitude, $scope.position.coords.longitude, run0[i].latitude, run0[i].longitude) < run0[i].radius) && (run0[i].played != true)) {
         console.log(run0[i].title + " is only " + distance($scope.position.coords.latitude, $scope.position.coords.longitude, run0[i].latitude, run0[i].longitude) + " Metres away!"); // This is where the mp3 will play
-        // run0[i].played = true;
+        playAudio(run0[i].mp3);
+        run0[i].played = true;
       }
     }
   };
