@@ -27,10 +27,16 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
+        },
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
         }
     }
