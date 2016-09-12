@@ -14,28 +14,28 @@ angular.module('starter.controllers', [])
   $scope.runs = Runs.all();
 })
 
-.controller('RunPlayCtrl', function($scope, $stateParams, $cordovaGeolocation, $ionicPlatform, Runs) {
+.controller('RunPlayCtrl', function($scope, $stateParams, $cordovaGeolocation, $ionicPlatform, Runs, $cordovaMedia) {
   $scope.run = Runs.get($stateParams.runId);
 
   var run0 = [
     {
       latitude: 42.45131615500636,
       longitude: -79.32819843292236,
-      radius: 50,
+      radius: 25,
       mp3: 'audio/ukulele.mp3',
       title: 'House of Gunner'
     },
     {
-      latitude: 42.451510103655494,
-      longitude: -79.33061242103577,
-      radius: 50,
+      latitude: 42.45149031300454,
+      longitude: -79.32904064655304,
+      radius: 25,
       mp3: 'audio/dubstep.mp3',
       title: 'Cottage and Lambert'
     },
     {
-      latitude: 42.45139927592952,
-      longitude: -79.33408319950104,
-      radius: 50,
+      latitude: 42.451480417676706,
+      longitude: -79.3306365609169,
+      radius: 25,
       mp3: 'audio/airy.mp3',
       title: 'Cottage and Central'
     }
@@ -52,55 +52,53 @@ angular.module('starter.controllers', [])
     return 12742000 * Math.asin(Math.sqrt(a)); // return distance in metres
   };
 
+  function playAudio(src) {
+
+    if($scope.media){
+      $scope.media.stop();
+      $scope.media.release();
+    }
+    $scope.media = $cordovaMedia.newMedia(src);
+    $scope.media.play({numberOfLoops: 1, playAudioWhenScreenIsLocked : true});
+  };
+
   function runTimeline() {
     // loop through the timeline data, play any audio, and then getCoords();
     for (var i = 0; i < run0.length; i++) {
-      if ((distance($scope.coords.latitude, $scope.coords.longitude, run0[i].latitude, run0[i].longitude) < run0[i].radius) && (run0[i].played != true)) {
-        console.log(run0[i].title + " is only " + distance($scope.coords.latitude, $scope.coords.longitude, run0[i].latitude, run0[i].longitude) + " Metres away!"); // This is where the mp3 will play
+      if ((distance($scope.position.coords.latitude, $scope.position.coords.longitude, run0[i].latitude, run0[i].longitude) < run0[i].radius) && (run0[i].played != true)) {
+        console.log(run0[i].title + " is only " + distance($scope.position.coords.latitude, $scope.position.coords.longitude, run0[i].latitude, run0[i].longitude) + " Metres away!"); // This is where the mp3 will play
+        playAudio(run0[i].mp3);
         run0[i].played = true;
       }
     }
-    getCoords();
   };
 
-  function updateMap(newCoords) {
+  function updateMap() {
     // Update map
-    var newLatLng = new google.maps.LatLng(newCoords.latitude, newCoords.longitude);
+    var newLatLng = new google.maps.LatLng($scope.position.coords.latitude, $scope.position.coords.longitude);
     $scope.marker.setPosition(newLatLng);
     map.setCenter({
-  		lat : newCoords.latitude,
-  		lng : newCoords.longitude
+  		lat : $scope.position.coords.latitude,
+  		lng : $scope.position.coords.longitude
     });
-    // Check for actions
-    // Wait 1 second then run getCoords again
-    setTimeout(function (){
-      // This will run the timeline
-      runTimeline();
-    }, 1000);
+    runTimeline();
   };
 
-  function getCoords() {
-    // Watch user location
-    var posOptions = {timeout: 30000, enableHighAccuracy: true};
-    $cordovaGeolocation.getCurrentPosition(posOptions)
-    .then(function (position) {
-      $scope.coords = position.coords;
-      updateMap(position.coords);
-    }, function(err) {
-      console.log('getCurrentPosition error: ' + angular.toJson(err));
-    });
+  function onErrorPosition (error) {
+    console.log('code: ' + error.code + 'message: ' + error.message);
   };
 
   var map;
-  function showMap(coords) {
+
+  function showMap(lat, long) {
     map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: coords.latitude, lng: coords.longitude},
+      center: {lat: lat, lng: long},
       zoom: 18,
       disableDefaultUI: true,
       mapTypeId: 'hybrid'
     });
     var marker = new google.maps.Marker({
-      position: {lat: coords.latitude, lng: coords.longitude},
+      position: {lat: lat, lng: long},
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
         scale: 10,
@@ -117,24 +115,20 @@ angular.module('starter.controllers', [])
     setTimeout(function () {
       document.getElementById("spinner").style.display = "none";
     }, 500);
-    getCoords();
-  }
+  };
+
+
+  function updateCoords(newCoords) {
+    $scope.position = newCoords;
+    console.log("lat " + $scope.position.coords.latitude + " long " + $scope.position.coords.longitude);
+    updateMap();
+  };
 
   $ionicPlatform.ready(function() {
-    var posOptions = {timeout: 30000, enableHighAccuracy: true};
-    $cordovaGeolocation.getCurrentPosition(posOptions)
-      .then(function (position) {
-        $scope.coords = position.coords;
-        showMap(position.coords);
-      }, function(err) {
-        console.log('getCurrentPosition error: ' + angular.toJson(err));
-      });
+    import { BackgroundMode } from 'ionic-native';
+    cordova.plugins.backgroundMode.enable();
+    showMap(0,0);
+    navigator.geolocation.watchPosition(updateCoords, onErrorPosition, {maximumAge: 1000, timeout: 30000, enableHighAccuracy: true});
   });
 
 })
-
-.controller('SettingsCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});

@@ -30,6 +30,14 @@
         },
         "cordova-plugin-media": {
             "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
+        },
+        "cordova-plugin-mauron85-background-geolocation": {
+            "ACCOUNT_TYPE": "$PACKAGE_NAME.account",
+            "CONTENT_AUTHORITY": "$PACKAGE_NAME",
+            "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
+        },
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
         }
     },
     "dependent_plugins": {

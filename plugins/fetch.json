@@ -18,7 +18,7 @@
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-whitelist"
+            "id": "cordova-plugin-whitelist@~1.2.2"
         },
         "is_top_level": true,
         "variables": {}
@@ -77,6 +77,22 @@
             "id": "cordova-plugin-file"
         },
         "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-mauron85-background-geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-mauron85-background-geolocation"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-background-mode": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-background-mode"
+        },
+        "is_top_level": true,
         "variables": {}
     }
 }

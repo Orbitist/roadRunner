@@ -21,21 +21,21 @@ angular.module('starter.controllers', [])
     {
       latitude: 42.45131615500636,
       longitude: -79.32819843292236,
-      radius: 50,
+      radius: 25,
       mp3: 'audio/ukulele.mp3',
       title: 'House of Gunner'
     },
     {
-      latitude: 42.451510103655494,
-      longitude: -79.33061242103577,
-      radius: 50,
+      latitude: 42.45149031300454,
+      longitude: -79.32904064655304,
+      radius: 25,
       mp3: 'audio/dubstep.mp3',
       title: 'Cottage and Lambert'
     },
     {
-      latitude: 42.45139927592952,
-      longitude: -79.33408319950104,
-      radius: 50,
+      latitude: 42.451480417676706,
+      longitude: -79.3306365609169,
+      radius: 25,
       mp3: 'audio/airy.mp3',
       title: 'Cottage and Central'
     }
@@ -53,12 +53,13 @@ angular.module('starter.controllers', [])
   };
 
   function playAudio(src) {
+
     if($scope.media){
       $scope.media.stop();
       $scope.media.release();
     }
     $scope.media = $cordovaMedia.newMedia(src);
-    $scope.media.play({numberOfLoops: 1,playAudioWhenScreenIsLocked : true});
+    $scope.media.play({numberOfLoops: 1, playAudioWhenScreenIsLocked : true});
   };
 
   function runTimeline() {
@@ -85,9 +86,10 @@ angular.module('starter.controllers', [])
 
   function onErrorPosition (error) {
     console.log('code: ' + error.code + 'message: ' + error.message);
-  }
+  };
 
   var map;
+
   function showMap(lat, long) {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: lat, lng: long},
@@ -113,7 +115,8 @@ angular.module('starter.controllers', [])
     setTimeout(function () {
       document.getElementById("spinner").style.display = "none";
     }, 500);
-  }
+  };
+
 
   function updateCoords(newCoords) {
     $scope.position = newCoords;
@@ -121,15 +124,11 @@ angular.module('starter.controllers', [])
     updateMap();
   };
 
-
+  $ionicPlatform.ready(function() {
+    import { BackgroundMode } from 'ionic-native';
+    cordova.plugins.backgroundMode.enable();
     showMap(0,0);
     navigator.geolocation.watchPosition(updateCoords, onErrorPosition, {maximumAge: 1000, timeout: 30000, enableHighAccuracy: true});
-
+  });
 
 })
-
-.controller('SettingsCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});

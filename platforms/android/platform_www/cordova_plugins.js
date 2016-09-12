@@ -235,6 +235,23 @@ module.exports = [
         "clobbers": [
             "window.Media"
         ]
+    },
+    {
+        "id": "cordova-plugin-mauron85-background-geolocation.backgroundGeolocation",
+        "file": "plugins/cordova-plugin-mauron85-background-geolocation/www/backgroundGeolocation.js",
+        "pluginId": "cordova-plugin-mauron85-background-geolocation",
+        "clobbers": [
+            "backgroundGeolocation"
+        ]
+    },
+    {
+        "id": "cordova-plugin-background-mode.BackgroundMode",
+        "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+        "pluginId": "cordova-plugin-background-mode",
+        "clobbers": [
+            "cordova.plugins.backgroundMode",
+            "plugin.backgroundMode"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -249,7 +266,9 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.0.0",
     "cordova-plugin-geolocation": "2.2.0",
     "cordova-plugin-file": "4.2.0",
-    "cordova-plugin-media": "2.3.0"
+    "cordova-plugin-media": "2.3.0",
+    "cordova-plugin-mauron85-background-geolocation": "2.2.0-alpha.8",
+    "cordova-plugin-background-mode": "0.6.5"
 };
 // BOTTOM OF METADATA
 });

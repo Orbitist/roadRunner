@@ -47,6 +47,14 @@
                         {
                             "xml": "<feature name=\"Media\"><param name=\"ios-package\" value=\"CDVSound\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BackgroundGeolocation\"><param name=\"ios-package\" value=\"CDVBackgroundGeolocation\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BackgroundMode\"><param name=\"ios-package\" value=\"APPBackgroundMode\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -56,6 +64,28 @@
                     "NSLocationWhenInUseUsageDescription": [
                         {
                             "xml": "<string />",
+                            "count": 1
+                        }
+                    ],
+                    "UIBackgroundModes": [
+                        {
+                            "xml": "<array><string>location</string></array>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<array><string>audio</string></array>",
+                            "count": 1
+                        }
+                    ],
+                    "NSLocationAlwaysUsageDescription": [
+                        {
+                            "xml": "<string>This app requires background location tracking</string>",
+                            "count": 1
+                        }
+                    ],
+                    "CFBundleURLTypes": [
+                        {
+                            "xml": "<array><dict><key>CFBundleTypeRole</key><string>Editor</string><key>CFBundleURLSchemes</key><array><string>prefs</string></array></dict></array>",
                             "count": 1
                         }
                     ]
@@ -92,6 +122,13 @@
             "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
         },
         "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
+        },
+        "cordova-plugin-mauron85-background-geolocation": {
+            "ALWAYS_USAGE_DESCRIPTION": "This app requires background location tracking",
+            "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
+        },
+        "cordova-plugin-background-mode": {
             "PACKAGE_NAME": "com.ionicframework.roadrunner539495"
         }
     },
@@ -366,6 +403,23 @@
             "clobbers": [
                 "window.Media"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-mauron85-background-geolocation/www/backgroundGeolocation.js",
+            "id": "cordova-plugin-mauron85-background-geolocation.backgroundGeolocation",
+            "pluginId": "cordova-plugin-mauron85-background-geolocation",
+            "clobbers": [
+                "backgroundGeolocation"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+            "id": "cordova-plugin-background-mode.BackgroundMode",
+            "pluginId": "cordova-plugin-background-mode",
+            "clobbers": [
+                "cordova.plugins.backgroundMode",
+                "plugin.backgroundMode"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -378,6 +432,8 @@
         "cordova-plugin-compat": "1.0.0",
         "cordova-plugin-geolocation": "2.2.0",
         "cordova-plugin-file": "4.2.0",
-        "cordova-plugin-media": "2.3.0"
+        "cordova-plugin-media": "2.3.0",
+        "cordova-plugin-mauron85-background-geolocation": "2.2.0-alpha.8",
+        "cordova-plugin-background-mode": "0.6.5"
     }
 }
