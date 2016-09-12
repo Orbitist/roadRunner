@@ -53,6 +53,10 @@ angular.module('starter.controllers', [])
   };
 
   function playAudio(src) {
+    if($scope.media){
+      $scope.media.stop();
+      $scope.media.release();
+    }
     $scope.media = $cordovaMedia.newMedia(src);
     $scope.media.play({numberOfLoops: 1,playAudioWhenScreenIsLocked : true});
   };
