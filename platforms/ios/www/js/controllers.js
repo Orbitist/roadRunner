@@ -11,25 +11,34 @@ angular.module('starter.controllers', []).controller('HomeCtrl', function ($scop
 }).controller('RunPlayCtrl', function ($scope, $stateParams, $cordovaGeolocation, $ionicPlatform, Runs, $cordovaMedia) {
   $scope.run = Runs.get($stateParams.runId);
 
-  var run0 = [{
-    latitude: 42.45131615500636,
-    longitude: -79.32819843292236,
-    radius: 25,
-    mp3: 'audio/ukulele.mp3',
-    title: 'House of Gunner'
-  }, {
-    latitude: 42.45149031300454,
-    longitude: -79.32904064655304,
-    radius: 25,
-    mp3: 'audio/dubstep.mp3',
-    title: 'Cottage and Lambert'
-  }, {
-    latitude: 42.451480417676706,
-    longitude: -79.3306365609169,
-    radius: 25,
-    mp3: 'audio/airy.mp3',
-    title: 'Cottage and Central'
-  }];
+  var run0 = [
+    {
+      latitude: 42.451680302995726,
+      longitude: -79.33801263570786,
+      radius: 10,
+      mp3: 'audio/ukulele.mp3',
+      title: 'Start'
+    }, {
+      latitude: 42.45201872123995,
+      longitude: -79.33761835098267,
+      radius: 10,
+      mp3: 'audio/dubstep.mp3',
+      title: 'Maytum'
+    }, {
+      latitude: 42.452513481464116,
+      longitude: -79.33792144060135,
+      radius: 10,
+      mp3: 'audio/airy.mp3',
+      title: 'Popeye'
+    },
+    {
+      latitude: 42.45214340118479,
+      longitude: -79.33835595846175,
+      radius: 10,
+      mp3: 'audio/rock.mp3',
+      title: 'King'
+    }
+  ];
 
   // lat1 and lon 1 are the current location of the device
   function distance(lat1, lon1, lat2, lon2) {
