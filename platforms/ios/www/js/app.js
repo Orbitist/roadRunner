@@ -6,25 +6,20 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
-
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova']).run(function ($ionicPlatform) {
+  $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
   });
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
+}).config(function ($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -33,7 +28,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -49,28 +44,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'HomeCtrl'
       }
     }
-  })
-
-  .state('tab.runs', {
-      url: '/runs',
-      views: {
-        'tab-runs': {
-          templateUrl: 'templates/tab-runs.html',
-          controller: 'RunsCtrl'
-        }
+  }).state('tab.runs', {
+    url: '/runs',
+    views: {
+      'tab-runs': {
+        templateUrl: 'templates/tab-runs.html',
+        controller: 'RunsCtrl'
       }
-    })
-    .state('tab.run-play', {
-      url: '/runs/:runId',
-      views: {
-        'tab-runs': {
-          templateUrl: 'templates/run-play.html',
-          controller: 'RunPlayCtrl'
-        }
+    }
+  }).state('tab.run-play', {
+    url: '/runs/:runId',
+    views: {
+      'tab-runs': {
+        templateUrl: 'templates/run-play.html',
+        controller: 'RunPlayCtrl'
       }
-    })
+    }
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
-
 });
